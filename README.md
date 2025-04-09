@@ -1,54 +1,43 @@
-# React + TypeScript + Vite
+# Ecommerce de comida con gestión para usuarios y administradores - (Repositorio Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una plataforma de ecommerce de comida desarrollada con un enfoque fullstack. Permite a los usuarios explorar un catálogo de productos, agregarlos a un carrito de compras, modificarlos o quitarlos, y realizar pedidos, en los cuáles solamente funcionaran mediante un sistema de pago con tarjeta de crédito o débito. La aplicación también incluye un panel administrativo donde se puede modificar el stock de un producto, y confirmar los pedidos realizados.
 
-Currently, two official plugins are available:
+Útilizo Laravel Sanctum para la autenticación y la generación de tokens, una interfaz hecha con Tailwind CSS, y una arquitectura hecho con un patrón de diseño que mejora la mantenibilidad del código. Además, todo el proyecto está contenedizado con Docker.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Autenticación
+- Se usa Laravel Sanctum.
+- El token se almacena en el frontend con LocalStorage.
+- El token no tiene una expiración de tiempo limitada.
 
-## Expanding the ESLint configuration
+# Carrito
+- Los productos se pueden añadir a un carrito.
+- Tienen un límite de hasta 5 productos individuales.
+- Se pueden modificar o borrar una vez añadidos al carrito.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Sistema de pago
+- El formulario de pago aparecerá una vez que hayan productos en el carrito.
+- La validación simula inputs de tarjetas reales (numero de tarjeta, cvv, fecha de vencimiento, tipo de tarjeta)
+- Es una migración distinta que saca el monto a través de una foreign key
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+# Desarrollo
+- Backend: Laravel
+- Frontend: React JS & TypeScript
+- BD: MySQL
+- Validaciones: Laravel validations, Custom Hooks
+- Autenticación: Laravel Sanctum 
+- UI: Taiwind CSS, Lucide Dev Icons
+- Contenerización: Docker
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# Imagenes del proyecto
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+![0](https://i.imgur.com/EcMfGaq.jpeg)
+![1](https://i.imgur.com/9VoyAMi.jpeg)
+![3](https://i.imgur.com/u3UOlEJ.jpeg)
+![4](https://i.imgur.com/i5EkDKF.jpeg)
+![5](https://i.imgur.com/mvlSfzU.jpeg)
+![6](https://i.imgur.com/jfVVEuc.jpeg)
+![7](https://i.imgur.com/ad4AFy7.jpeg)
+![8](https://i.imgur.com/0lfzy9j.jpeg)
+![9](https://i.imgur.com/WRL7ogu.jpeg)
+![10](https://i.imgur.com/IE99UoT.jpeg)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
